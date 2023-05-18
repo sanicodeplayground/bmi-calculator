@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      function calculateBmi() {
+        let weight = parseFloat(
+          document.getElementById("weight_kilograms").value
+        );
+        let height =
+          parseFloat(document.getElementById("height_centimeters").value) / 100; //convert cm to m
+
+        let bmi = (weight / Math.pow(height, 2)).toFixed(1);
+
+        if (bmi < 18.5) {
+          return (
+            "Your BMI is: " +
+            bmi +
+            '<br><span class="underweight"> You are underweight</span>'
+          );
+        } else if (bmi >= 18.5 && bmi <= 24.9) {
+          return (
+            "Your BMI is: " +
+            bmi +
+            '<br><span class="fine"> You are fine</span>'
+          );
+        } else {
+          return (
+            "Your BMI is: " +
+            bmi +
+            '<br><span class="overweight"> You are overweight</span>'
+          );
+        }
+      }
+
+      function showBmi() {
+        document.getElementById("bmi-score").innerHTML = calculateBmi();
+      }
+    </script>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>BMI Calculator</h1>
+      <h2 id="bmi-score" class="bmi-score"></h2>
+      <!-- Form -->
+      <form id="form" action="">
+        <label for="weight_kilograms">Weight <span>Kilograms</span></label>
+        <input
+          id="weight_kilograms"
+          type="number"
+          name="weight"
+          value="number"
+          required
+        />
+        <label for="height_centimeters">Height <span>Centimeters</span></label>
+        <input
+          id="height_centimeters"
+          type="number"
+          name="height"
+          value="number"
+          required
+        />
+        <button type="button" onclick="showBmi()">Calculate</button>
+      </form>
+
+      <!-- Form End-->
+    </div>
+  </body>
+</html>
